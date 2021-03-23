@@ -6,6 +6,7 @@
     </CSidebarBrand>
     <Menu/>
     <CSidebarMinimizer class="c-d-md-down-none" @click.native="$store.commit('toggle', 'sidebarMinimize')" />
+    
   </CSidebar>
 </template>
 

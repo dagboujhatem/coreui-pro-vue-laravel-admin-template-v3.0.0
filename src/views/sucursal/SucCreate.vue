@@ -144,7 +144,7 @@ export default {
       self.submitted = true
       self.spinner = false
       self.errors = []
-
+      
       axios.post(this.$apiAdress+'/api/sucursal/almacenar?token='+localStorage.getItem("api_token"), self.form
       ).then(function (response) {
       //  alert.response200('¡Registrado exitosamente!', `<a href="#/users/${response.data.id.toString()}"><b>Ver registro</b></a>`)
@@ -162,7 +162,6 @@ export default {
     getSeries() {
       let self = this;
       self.series = []
-
       axios.post(this.$apiAdress+'/api/catalogo/getAll?token=' + localStorage.getItem("api_token"), {
         input: 'Cotizaciones (Serie)'
       })

@@ -1,7 +1,29 @@
 <template>
-	<CSidebarNav>
+	<CSidebarNav class="nav-item">
+    
+  <CSidebarNavItem name="Dashboard" to="/iniciodash" icon="cil-speedometer"></CSidebarNavItem>
+  <CSidebarNavItem name="Órdenes y Cotizaciones" to="/cotizacion" icon="cil-notes" ></CSidebarNavItem>
+  <CSidebarNavItem name="Clientes y Vehículos " to="/clientes" icon="cil-people" ></CSidebarNavItem>
+  
+
+
+  <CSidebarNavItem name="Citas y Recordatorios" to="/citas" icon="cil-calendar" ></CSidebarNavItem>
+  
+  <CSidebarNavDropdown name="Inventario" to="/" icon="cilLayers" >
+  <CSidebarNavItem name="Refacciones" to="/Regpartidos" icon="cil-puzzle" :hidden="permisos([])" ></CSidebarNavItem>
+  </CSidebarNavDropdown>
+  
+  <CSidebarNavDropdown name="Administración" to="/" icon="cil-dollar" >
+  <CSidebarNavItem name="Balance" to="/Balance" icon="cilChartPie" ></CSidebarNavItem>
+  <CSidebarNavItem name="Gastos de compra" to="/" icon="cilCreditCard" ></CSidebarNavItem>
+  </CSidebarNavDropdown>
+
+  <CSidebarNavItem name="Detalles de la empresa" to="/Empresa" icon="cil-settings" ></CSidebarNavItem> 
+  
+
 		<CSidebarNavDropdown name="Configuración" to="/configuracion" icon="cilSettings" :hidden="permisos([])">
 			<CSidebarNavItem :name="sistema.emp_abrev" to="/sistema" icon="cilGlobeAlt" :hidden="permisos(['sistema.edit','sistema.show'])"></CSidebarNavItem>
+      
 			
 			<CSidebarNavDropdown name="Tutoriales" to="/tutoriales" icon="cibYoutube" :hidden="permisos(['tutotial.create','tutotial.show','tutotial.edit','tutotial.destroy'])">
 				<CSidebarNavItem name="Lista de tutoriales" to="/tutoriales" icon="cilList" :hidden="permisos(['tutotial.create','tutotial.show','tutotial.edit','tutotial.destroy'])"></CSidebarNavItem>
@@ -44,3 +66,10 @@ export default {
   },
 }
 </script>
+
+<style >
+  .nav-item{
+  font-family: sans-serif;
+  font-size: 15px;
+ }
+</style>

@@ -50,6 +50,9 @@ import check from '@/repositories/global/check'
 // Containers
 const TheContainer = () => import('@/containers/TheContainer')
 
+// Inicio
+const Iniciodash= () => import('@/views/iniciodash/Iniciodash')
+
 // Views
 const Dashboard = () => import('@/views/Dashboard')
 
@@ -65,6 +68,15 @@ const SucCreate = () => import('@/views/sucursal/SucCreate')
 const SucShow = () => import('@/views/sucursal/SucShow')
 const SucEdit = () => import('@/views/sucursal/SucEdit')
 
+// Citas y recordatorios
+const CitasRecordatorios = () => import('@/views/citas/CitasRecordatorios')
+const Citas = () => import('@/views/citas/Citas')
+const Recordatorios = () => import('@/views/citas/Recordatorios')
+const NvoCita=()=>import('@/views/citas/NvoCita')
+
+// Balance
+const Balance = () => import('@/views/administracion/Balance')
+
 
 // Catálogos
 const CatIndex = () => import('@/views/configuracion/catalogo/CatIndex')
@@ -72,10 +84,35 @@ const CatCreate = () => import('@/views/configuracion/catalogo/CatCreate')
 const CatShow = () => import('@/views/configuracion/catalogo/CatShow')
 const CatEdit = () => import('@/views/configuracion/catalogo/CatEdit')
 
+// Clientes
+const Clientes = () => import('@/views/cliente/Clientes')
+const NvoCliente=()=> import('@/views/cliente/NvoCliente')
+const Registros = () => import('@/views/cliente/Registros')
+const Directorios = () => import('@/views/cliente/Directorios')
+const DatosFactura = () => import('@/views/cliente/DatosFactura')
+const Credito = () => import('@/views/cliente/Credito')
+const Clienteshow = () => import('@/views/cliente/Clienteshow')
+const RegCliente = () => import('@/views/cliente/RegCliente')
+const Deudores = () => import('@/views/cliente/deudores/Deudores')
+const Detalles = () => import('@/views/cliente/Detalles')
+
+// Cotizaciones
+const Cotizacion = () => import('@/views/cotizaciones/Cotizacion')
+const NvaCotizacion = () => import('@/views/cotizaciones/NvaCotizacion')
+
+// Detalles de la empresa
+const Empresa = () => import('@/views/detallesempresa/Empresa')
+
+
 // Users
 const Users = () => import('@/views/users/Users')
 const User = () => import('@/views/users/User')
 const EditUser = () => import('@/views/users/EditUser')
+
+// Vehículos
+const Piso = () => import('@/views/vehiculos/Piso')
+const Recepcion = () => import('@/views/vehiculos/Recepcion')
+const EditarVehiculo = () => import('@/views/vehiculos/EditarVehiculo')
 
 //Notes
 const Notes = () => import('@/views/notes/Notes')
@@ -150,17 +187,46 @@ function configRoutes () {
         {
           path: 'inicio',
           name: 'Inicio',
-          component: Dashboard,
+          component: Iniciodash,
           meta:{
             requiresAdmin: true,
             permissions : ['global']
           }
         },
 
-
-
-
-
+        {
+          path: 'iniciodash',
+          meta: { label: 'Iniciodash'},
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: Iniciodash,
+              meta:{
+                requiresAdmin: true,
+                permissions : ['global']
+              }
+            }]
+          },
+          {
+            path: 'administracion/balance',
+            meta: { label: 'Balance'},
+            component: {
+              render (c) { return c('router-view') }
+            },
+            children: [
+              {
+                path: '',
+                component: Balance,
+                meta:{
+                  requiresAdmin: true,
+                  permissions : ['global']
+                }
+              },
+            ]
+          },
 
 
         {
@@ -211,13 +277,71 @@ function configRoutes () {
           ]
         },
 
+        {
+          path: 'empresa',
+          meta: { label: 'Empresa'},
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: Empresa,
+              meta:{
+                requiresAdmin: true,
+                permissions : ['global']
+              }
+            },
+          ]
+        },
+        {
+          path: 'CitasRecordatorios',
+          meta: { label: 'CitasRecordatorios'},
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: Citas,
+              meta:{
+                requiresAdmin: true,
+                permissions : ['global']
+              }
+            },
+            {
+              path: '/citas',
+              meta: { label: 'Citas' },
+              name: 'Nuevo Cita',
+              component: Citas,
+              meta:{
+                requiresAdmin: true,
+                permissions : ['global']
+              }
+            },
+            {
+              path: '/recordatorios',
+              meta: { label: 'Recordatorios' },
+              name: 'Nuevo recordatorio',
+              component: Recordatorios,
+              meta:{
+                requiresAdmin: true,
+                permissions : ['global']
+              }
+            },
 
-
-
-
-
-
-        
+            {
+              path: '/nvocita',
+              meta: { label: 'NvoCita' },
+              name: 'Nueva Cita',
+              component: NvoCita,
+              meta:{
+                requiresAdmin: true,
+                permissions : ['global']
+              }
+            },
+          ]
+        },
         {
           path: 'catalogos',
           meta: { label: 'Catálogos'},
@@ -265,13 +389,142 @@ function configRoutes () {
             },
           ]
         },
+        {
+          path: 'clientes',
+          meta: { label: 'Clientes'},
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: Clientes,
+              meta:{
+                requiresAdmin: true,
+                permissions : ['global']
+              }
+            },
+            {
+              path: '/nvoCliente',
+              meta: { label: 'NvoCliente' },
+              name: 'Nuevo Cliente',
+              component: NvoCliente,
+              meta:{
+                requiresAdmin: true,
+                permissions : ['global']
+              }
+            },
+            {
+              path: '/detalles',
+              meta: { label: 'Detalles' },
+              name: 'Detalles Clientes',
+              component: Detalles,
+              meta:{
+                requiresAdmin: true,
+                permissions : ['global']
+              }
+            },
+            {
+              path: '/registros',
+              meta: { label: 'Registrar Clientes' },
+              name: 'Registrar Clientes',
+              component: Registros,
+              meta:{
+                requiresAdmin: true,
+                permissions : ['global']
+              }
+            },
+            {
+              path: '/directorios',
+              meta: { label: 'Registrar Clientes' },
+              name: 'Registrar Clientes',
+              component: Directorios,
+              meta:{
+                requiresAdmin: true,
+                permissions : ['global']
+              }
+            },
+            {
+              path: '/datosfactura',
+              meta: { label: 'Registrar datos de facturacion' },
+              name: 'Registrar datos de facturacion',
+              component: DatosFactura,
+              meta:{
+                requiresAdmin: true,
+                permissions : ['global']
+              }
+            },
+            {
+              path: '/credito',
+              meta: { label: 'Registrar datos de crédito' },
+              name: 'Registrar datos de crédito',
+              component: Credito,
+              meta:{
+                requiresAdmin: true,
+                permissions : ['global']
+              }
+            },
+            {
+            path: 'detalles/:id',
+            meta: { label: 'Detalles cliente'},
+            name: 'Detalles cliente',
+            component: Clienteshow,
+            meta:{
+              requiresAdmin: true,
+              permissions : ['clientev.show']
+            }
+            },
+            {
+              path: '/regcliente',
+              meta: { label: 'RegCliente' },
+              name: 'Nuevo cliente',
+              component: RegCliente,
+              meta:{
+                requiresAdmin: true,
+                permissions : ['global']
+              }
+            },
+            {
+              path: '/deudores',
+              meta: { label: 'Deudores' },
+              name: 'Cliente Deudor',
+              component: Deudores,
+              meta:{
+                requiresAdmin: true,
+                permissions : ['global']
+              }
+            },
 
+          ]
+        },
 
-
-
-
-
-
+        {
+          path: 'cotizacion',
+          meta: { label: 'Cotizacion'},
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component:Cotizacion,
+              meta:{
+                requiresAdmin: true,
+                permissions : ['global']
+              }
+            },
+            {
+              path: '/nvacotizacion',
+              meta: { label: 'NvaCotizacion' },
+              name: 'Nueva cotizacion',
+              component:NvaCotizacion,
+              meta:{
+                requiresAdmin: true,
+                permissions : ['global']
+              }
+            },
+          ]},
+     
         {
           path: 'perfil',
           meta: { label: 'Perfil'},
@@ -351,6 +604,43 @@ function configRoutes () {
               meta: { label: 'Edit User' },
               name: 'EditUser',
               component: EditUser,
+              meta:{
+                requiresAdmin: true,
+                permissions : []
+              }
+            },
+          ]
+        },
+        {
+          path: 'vehiculos',
+          meta: { label: 'vehiculos'},
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '/piso',
+              component: Piso,
+              meta:{
+                requiresAdmin: true,
+                permissions : ['global']
+              }
+            },
+            {
+              path: '/recepcion',
+              meta: { label: 'Recepcion' },
+              name: 'Recepcion Vehículos',
+              component: Recepcion,
+              meta:{
+                requiresAdmin: true,
+                permissions : []
+              }
+            },
+            {
+              path: '/editarvehiculo',
+              meta: { label: 'EditarVehiculo' },
+              name: 'Editar Vehículo',
+              component: EditarVehiculo,
               meta:{
                 requiresAdmin: true,
                 permissions : []

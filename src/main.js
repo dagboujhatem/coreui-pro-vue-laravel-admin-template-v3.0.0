@@ -15,7 +15,7 @@ Vue.use(PerfectScrollbar)
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
 
-Vue.prototype.$apiAdress = 'http://127.0.0.1:8000'
+Vue.prototype.$apiAdress = 'http://192.168.100.214'
 Vue.use(CoreuiVue)
 Vue.use(vuexI18n.plugin, store);
 Vue.i18n.add('es', Locales.es);
